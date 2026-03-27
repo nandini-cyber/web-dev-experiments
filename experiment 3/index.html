@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Nandini</h1>
+        <p>Web Developer | Student | Tech Enthusiast</p>
+    </header>
+
+    <section class="about">
+        <h2>About Me</h2>
+        <p>I am a passionate Computer Science student learning Web Development and Machine Learning.</p>
+    </section>
+
+    <section class="skills">
+        <h2>My Skills</h2>
+        <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>Python</li>
+        </ul>
+    </section>
+
+    <section class="projects">
+        <h2>My Projects</h2>
+        <p>1. Portfolio Website</p>
+        <p>2. Quiz Application</p>
+        <p>3. Landing Page Design</p>
+    </section>
+
+    <section class="contact">
+        <h2>Contact Me</h2>
+        <form onsubmit="showMessage(); return false;">
+            <input type="text" placeholder="Your Name" required><br><br>
+            <input type="email" placeholder="Your Email" required><br><br>
+            <textarea placeholder="Your Message" required></textarea><br><br>
+            <button type="submit">Submit</button>
+        </form>
+        <p id="message"></p>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
