@@ -1,0 +1,55 @@
+body {
+    font-family: Arial;
+    margin: 0;
+    padding: 0;
+    background-color: #e6f2ff;   /* Light blue background */
+    text-align: center;
+}
+
+header {
+    background-color: #0056b3;   /* Dark blue header */
+    color: white;
+    padding: 20px;
+}
+
+section {
+    padding: 20px;
+    margin: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 255, 0.1);
+}
+
+h2 {
+    color: #0056b3;   /* Blue section headings */
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    padding: 5px;
+    color: #003366;   /* Dark blue text */
+}
+
+button {
+    padding: 8px 15px;
+    background-color: #007bff;   /* Bright blue button */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #004080;   /* Darker blue on hover */
+}
+
+input, textarea {
+    padding: 8px;
+    width: 80%;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+}
