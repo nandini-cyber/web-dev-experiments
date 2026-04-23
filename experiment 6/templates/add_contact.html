@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Add Contact — ContactManager{% endblock %}
+
+{% block content %}
+
+  <h1 class="page-heading">➕ Add New Contact</h1>
+
+  <div class="form-card">
+
+    <!-- Show validation error if any field was left empty -->
+    {% if error %}
+      <div class="alert-error">⚠️ {{ error }}</div>
+    {% endif %}
+
+    <!-- =====================================================
+         ADD CONTACT FORM
+         Action → POST /add
+         Fields → name, phone, email (all required)
+    ===================================================== -->
+    <form action="{{ url_for('add_contact') }}" method="POST">
+
+      <!-- Name field -->
+      <div class="form-group">
+        <label for="name">Full Name *</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="e.g. Rahul Sharma"
+          maxlength="100"
+          required
+        />
+      </div>
+
+      <!-- Phone field -->
+      <div class="form-group">
+        <label for="phone">Phone Number *</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="e.g. +91 98765 43210"
+          maxlength="20"
+          required
+        />
+      </div>
+
+      <!-- Email field -->
+      <div class="form-group">
+        <label for="email">Email Address *</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="e.g. rahul@example.com"
+          maxlength="150"
+          required
+        />
+      </div>
+
+      <!-- Form action buttons -->
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Save Contact</button>
+        <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancel</a>
+      </div>
+
+    </form>
+  </div>
+
+{% endblock %}

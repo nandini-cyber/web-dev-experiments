@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Home — SimpleBlog{% endblock %}
+
+{% block content %}
+
+  <!-- Page heading -->
+  <h1 class="page-heading">All Posts</h1>
+
+  <!-- ===================================================
+       CASE 1: No posts exist yet → show friendly empty state
+  =================================================== -->
+  {% if posts | length == 0 %}
+    <div class="empty-state">
+      <div class="icon">📝</div>
+      <h2>No posts yet!</h2>
+      <p>Be the first to share something with the world.</p>
+      <a href="{{ url_for('create') }}" class="btn btn-primary">Create First Post</a>
+    </div>
+
+  {% else %}
+  <!-- ===================================================
+       CASE 2: Posts exist → render each as a card
+  =================================================== -->
+    {% for post in posts %}
+      <div class="card">
+
+        <!-- Post number badge -->
+        <div class="card-meta">Post #{{ post.id }}</div>
+
+        <!-- Title -->
+        <h2 class="card-title">{{ post.title }}</h2>
+
+        <!-- Content (truncated to 300 chars on listing page) -->
+        <p class="card-content">
+          {% if post.content | length > 300 %}
+            {{ post.content[:300] }}…
+          {% else %}
+            {{ post.content }}
+          {% endif %}
+        </p>
+
+        <!-- Action buttons -->
+        <div class="card-actions">
+
+          <!-- Edit button → GET /edit/<id> -->
+          <a href="{{ url_for('edit', post_id=post.id) }}"
+             class="btn btn-edit">✏️ Edit</a>
+
+          <!-- Delete button → POST /delete/<id> via a tiny form -->
+          <form action="{{ url_for('delete', post_id=post.id) }}"
+                method="POST"
+                onsubmit="return confirm('Delete this post? This cannot be undone.');">
+            <button type="submit" class="btn btn-delete">🗑 Delete</button>
+          </form>
+
+        </div>
+      </div>
+    {% endfor %}
+
+    <!-- Summary count -->
+    <p style="text-align:right; color:var(--muted); font-size:.85rem;">
+      {{ posts | length }} post{{ 's' if posts | length != 1 else '' }} total
+    </p>
+
+  {% endif %}
+
+{% endblock %}

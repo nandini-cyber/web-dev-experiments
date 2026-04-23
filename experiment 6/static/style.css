@@ -1,0 +1,20 @@
+/*
+  static/style.css
+  ----------------
+  Supplemental styles for ContactManager (Experiment 6).
+  Core styles are embedded in base.html.
+  Add theme overrides or extra customizations here.
+*/
+
+/* Highlight searched text — can be applied via JS if needed */
+mark {
+  background: #fef08a;
+  border-radius: 3px;
+  padding: 0 2px;
+}
+
+/* Responsive table scroll on very small screens */
+@media (max-width: 480px) {
+  .table-wrap { overflow-x: auto; }
+  table       { min-width: 520px; }
+}

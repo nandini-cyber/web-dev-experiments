@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}Contact Manager{% endblock %}</title>
+
+  <!-- Google Fonts: DM Sans (body) + DM Serif Display (headings) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* ============================================================
+       VARIABLES & RESET
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg       : #f0f4ff;
+      --surface  : #ffffff;
+      --ink      : #1b1f3b;
+      --muted    : #6b7280;
+      --accent   : #4f46e5;        /* indigo */
+      --accent-lt: #eef2ff;
+      --danger   : #dc2626;
+      --success  : #16a34a;
+      --border   : #e2e8f0;
+      --radius   : 8px;
+      --shadow   : 0 2px 14px rgba(79,70,229,.10);
+      --max-w    : 900px;
+      --fhead    : 'DM Serif Display', Georgia, serif;
+      --fbody    : 'DM Sans', 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background : var(--bg);
+      color      : var(--ink);
+      font-family: var(--fbody);
+      font-size  : 15px;
+      line-height: 1.65;
+      min-height : 100vh;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ============================================================
+       HEADER
+    ============================================================ */
+    header {
+      background: var(--ink);
+      height    : 62px;
+      display   : flex;
+      align-items: center;
+      justify-content: space-between;
+      padding   : 0 2rem;
+      position  : sticky;
+      top        : 0;
+      z-index    : 100;
+      box-shadow : 0 2px 20px rgba(0,0,0,.3);
+    }
+
+    .brand {
+      font-family: var(--fhead);
+      font-size  : 1.4rem;
+      color      : #fff;
+    }
+    .brand span { color: #818cf8; }
+
+    nav { display: flex; gap: 1rem; align-items: center; }
+
+    nav a {
+      color      : rgba(255,255,255,.7);
+      font-size  : .85rem;
+      font-weight: 500;
+      padding    : .35rem .9rem;
+      border-radius: var(--radius);
+      transition : all .18s;
+      letter-spacing: .03em;
+    }
+    nav a:hover { background: rgba(255,255,255,.1); color: #fff; text-decoration: none; }
+
+    nav a.btn-add {
+      background: var(--accent);
+      color     : #fff;
+    }
+    nav a.btn-add:hover { background: #4338ca; }
+
+    /* ============================================================
+       MAIN
+    ============================================================ */
+    main {
+      max-width: var(--max-w);
+      margin   : 2.5rem auto;
+      padding  : 0 1.5rem;
+    }
+
+    .page-heading {
+      font-family  : var(--fhead);
+      font-size    : 2rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: .75rem;
+      border-bottom: 2px solid var(--border);
+    }
+
+    /* ============================================================
+       SEARCH BAR
+    ============================================================ */
+    .search-bar {
+      display    : flex;
+      gap        : .6rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .search-bar input {
+      flex        : 1;
+      font-family : var(--fbody);
+      font-size   : .95rem;
+      padding     : .55rem 1rem;
+      border      : 1.5px solid var(--border);
+      border-radius: var(--radius);
+      background  : var(--surface);
+      color       : var(--ink);
+      outline     : none;
+      transition  : border-color .18s;
+    }
+    .search-bar input:focus { border-color: var(--accent); }
+
+    .search-bar button {
+      padding    : .55rem 1.2rem;
+      background : var(--accent);
+      color      : #fff;
+      border     : none;
+      border-radius: var(--radius);
+      font-family: var(--fbody);
+      font-weight: 600;
+      cursor     : pointer;
+      transition : background .18s;
+    }
+    .search-bar button:hover { background: #4338ca; }
+
+    .search-bar a.clear {
+      padding    : .55rem 1rem;
+      border     : 1.5px solid var(--border);
+      border-radius: var(--radius);
+      color      : var(--muted);
+      font-size  : .85rem;
+      display    : flex;
+      align-items: center;
+    }
+    .search-bar a.clear:hover { border-color: var(--muted); text-decoration: none; }
+
+    /* ============================================================
+       TABLE
+    ============================================================ */
+    .table-wrap {
+      background   : var(--surface);
+      border       : 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow   : var(--shadow);
+      overflow     : hidden;
+    }
+
+    table {
+      width          : 100%;
+      border-collapse: collapse;
+    }
+
+    thead {
+      background: var(--accent);
+      color     : #fff;
+    }
+
+    thead th {
+      padding    : .85rem 1.2rem;
+      text-align : left;
+      font-size  : .82rem;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition   : background .15s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--accent-lt); }
+
+    tbody td {
+      padding  : .85rem 1.2rem;
+      font-size: .93rem;
+      color    : var(--ink);
+    }
+
+    .td-id { color: var(--muted); font-size: .8rem; }
+
+    /* ============================================================
+       ACTION BUTTONS
+    ============================================================ */
+    .btn {
+      display      : inline-block;
+      font-family  : var(--fbody);
+      font-size    : .8rem;
+      font-weight  : 700;
+      padding      : .3rem .85rem;
+      border-radius: var(--radius);
+      border       : 2px solid transparent;
+      cursor       : pointer;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      transition   : all .17s;
+    }
+
+    .btn-edit {
+      border-color: var(--accent);
+      color       : var(--accent);
+      background  : transparent;
+    }
+    .btn-edit:hover { background: var(--accent); color: #fff; text-decoration: none; }
+
+    .btn-delete {
+      border-color: var(--danger);
+      color       : var(--danger);
+      background  : transparent;
+    }
+    .btn-delete:hover { background: var(--danger); color: #fff; }
+
+    .btn-primary {
+      background  : var(--accent);
+      color       : #fff;
+      border-color: var(--accent);
+    }
+    .btn-primary:hover { background: #4338ca; border-color: #4338ca; text-decoration: none; }
+
+    .btn-secondary {
+      background  : transparent;
+      color       : var(--muted);
+      border-color: var(--border);
+    }
+    .btn-secondary:hover { border-color: var(--muted); color: var(--ink); text-decoration: none; }
+
+    .actions { display: flex; gap: .5rem; }
+
+    /* ============================================================
+       FORM CARD
+    ============================================================ */
+    .form-card {
+      background   : var(--surface);
+      border       : 1px solid var(--border);
+      border-radius: var(--radius);
+      padding      : 2.5rem;
+      box-shadow   : var(--shadow);
+      max-width    : 560px;
+    }
+
+    .form-group { margin-bottom: 1.3rem; }
+
+    label {
+      display      : block;
+      font-weight  : 700;
+      font-size    : .82rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color        : var(--muted);
+      margin-bottom: .4rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"] {
+      width        : 100%;
+      font-family  : var(--fbody);
+      font-size    : .97rem;
+      color        : var(--ink);
+      background   : var(--bg);
+      border       : 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding      : .6rem .9rem;
+      outline      : none;
+      transition   : border-color .18s, box-shadow .18s;
+    }
+    input:focus {
+      border-color: var(--accent);
+      box-shadow  : 0 0 0 3px rgba(79,70,229,.12);
+    }
+
+    .form-actions { display: flex; gap: 1rem; margin-top: 1.75rem; }
+
+    /* ============================================================
+       ALERT / ERROR
+    ============================================================ */
+    .alert-error {
+      background : #fef2f2;
+      border-left: 4px solid var(--danger);
+      color      : var(--danger);
+      padding    : .75rem 1rem;
+      border-radius: var(--radius);
+      font-size  : .9rem;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ============================================================
+       EMPTY STATE
+    ============================================================ */
+    .empty-state {
+      text-align: center;
+      padding   : 4rem 2rem;
+      color     : var(--muted);
+    }
+    .empty-state .icon { font-size: 3.5rem; margin-bottom: 1rem; }
+    .empty-state h2 {
+      font-family: var(--fhead);
+      font-size  : 1.8rem;
+      color      : var(--ink);
+      margin-bottom: .5rem;
+    }
+    .empty-state p { margin-bottom: 1.5rem; }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      text-align: center;
+      padding   : 2rem;
+      font-size : .8rem;
+      color     : var(--muted);
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 620px) {
+      header { padding: 0 1rem; }
+      .form-card { padding: 1.5rem; }
+      thead th, tbody td { padding: .7rem .8rem; font-size: .82rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION HEADER ===== -->
+  <header>
+    <div class="brand">Contact<span>Manager</span></div>
+    <nav>
+      <a href="{{ url_for('index') }}">🏠 Home</a>
+      <a href="{{ url_for('add_contact') }}" class="btn-add">+ Add Contact</a>
+    </nav>
+  </header>
+
+  <!-- ===== PAGE CONTENT ===== -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    &copy; 2026 ContactManager &mdash; Flask CRUD Experiment 6
+  </footer>
+
+</body>
+</html>
