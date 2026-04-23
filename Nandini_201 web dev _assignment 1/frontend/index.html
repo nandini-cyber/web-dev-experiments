@@ -1,0 +1,52 @@
+<!--
+Project Title: Dynamic To-Do List Application
+Name: Varsha Rani
+Date: 20 February 2026
+Description:
+This project is a dynamic to-do list web application where users can:
+- Add tasks
+- Edit tasks
+- Delete tasks
+- Mark tasks as completed
+Built using HTML, CSS, and JavaScript.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Dynamic To-Do List</h1>
+
+    <p class="description">
+        This application allows users to manage daily tasks by adding,
+        editing, deleting, and marking tasks as completed.
+    </p>
+
+    <!-- Input Section -->
+    <div class="input-section">
+        <input type="text" id="taskInput" placeholder="Enter a new task">
+        <button onclick="addTask()">Add Task</button>
+    </div>
+
+    <!-- Task List -->
+    <ul id="taskList"></ul>
+
+    <!-- Task Count -->
+    <div class="task-count">
+        Completed: <span id="completedCount">0</span> |
+        Pending: <span id="pendingCount">0</span>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

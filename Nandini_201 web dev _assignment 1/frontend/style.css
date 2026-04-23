@@ -1,0 +1,165 @@
+/* Modern Stylish To-Do UI */
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+
+    /* CHANGED COLOR */
+    background: linear-gradient(135deg, #667eea, #764ba2);
+
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+/* Glass Card */
+.container {
+    width: 480px;
+    margin: 60px auto;
+    padding: 30px;
+    border-radius: 18px;
+
+    /* CHANGED COLOR */
+    background: rgba(255, 255, 255, 0.18);
+
+    backdrop-filter: blur(15px);
+
+    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+
+    text-align: center;
+
+    color: #ffffff;
+}
+
+/* Title */
+h1 {
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+
+    /* NEW COLOR */
+    color: #ffffff;
+}
+
+/* Description */
+.description {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 25px;
+
+    /* NEW COLOR */
+    color: #e0e0ff;
+}
+
+/* Input Section */
+.input-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Input Box */
+input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+
+    /* NEW COLOR */
+    background: #f5f7ff;
+}
+
+/* Button */
+button {
+    padding: 12px 18px;
+    border-radius: 10px;
+    border: none;
+
+    /* CHANGED COLOR */
+    background: #ffffff;
+
+    color: #5a67d8;
+
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Button Hover */
+button:hover {
+    transform: translateY(-2px);
+
+    /* CHANGED COLOR */
+    background: #5a67d8;
+
+    color: white;
+}
+
+/* Task List */
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+/* Task Item */
+li {
+    background: rgba(255,255,255,0.95);
+
+    color: black;
+
+    padding: 12px;
+    margin-bottom: 10px;
+
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    transition: 0.3s;
+}
+
+/* Hover Effect */
+li:hover {
+    transform: scale(1.02);
+
+    /* NEW COLOR */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Task Text */
+.task-text {
+    flex: 1;
+    margin-left: 10px;
+}
+
+/* Completed Task */
+.completed {
+    text-decoration: line-through;
+
+    /* CHANGED COLOR */
+    color: #888888;
+}
+
+/* Edit/Delete Buttons */
+.task-buttons button {
+    padding: 6px 10px;
+    font-size: 12px;
+    margin-left: 5px;
+    border-radius: 6px;
+
+    /* NEW COLOR */
+    background: #e6e9ff;
+
+    color: #5a67d8;
+}
+
+/* Task Counter */
+.task-count {
+    margin-top: 15px;
+    font-weight: bold;
+
+    /* CHANGED COLOR */
+    color: #ffffff;
+}
